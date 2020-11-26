@@ -1,11 +1,14 @@
 version: "3.8"
 services:
         master:
-                build: .
                 image: mpi
-                #ports:
-                # - "12000:22"
+                build: .
+                volumes:
+                        - ./project:/root/project
         worker:
                 image: mpi
                 build: .
+                volumes:
+                        - ./project:/root/project
+ 
 
