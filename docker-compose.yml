@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+        master:
+                build: .
+                image: mpi
+                #ports:
+                # - "12000:22"
+        worker:
+                image: mpi
+                build: .
+
