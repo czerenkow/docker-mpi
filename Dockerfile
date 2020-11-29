@@ -13,6 +13,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-client
 RUN tinysshd-makekey /etc/tinyssh/sshkeydir
 RUN mkdir /root/.ssh/
 COPY ssh/*  /root/.ssh/
+RUN chmod 700 /root/.ssh/authorized_keys
+RUN chmod 600 /root/.ssh/id_ecdsa
 COPY machinefile /root/
 
 ENTRYPOINT ["tcpserver", "-HRDl0", "0.0.0.0", "22", "/usr/sbin/tinysshd", "-v", "/etc/tinyssh/sshkeydir"]

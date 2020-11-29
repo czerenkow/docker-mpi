@@ -2,3 +2,14 @@ Host *
 	StrictHostKeyChecking no
 	UserKnownHostsFile=/dev/null
 
+Host node_komp
+	Port 2222
+	Hostname 192.168.1.50
+	User root
+	
+Host node_laptop
+	Port 2222
+	Hostname 192.168.1.51
+	User root
+
+
