@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cat /root/machinefile | xargs -I {} rsync -avr /root/project root@{}:/root/

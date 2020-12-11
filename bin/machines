@@ -1,0 +1,3 @@
+#!/bin/bash
+
+worker-nodes > /root/machinefile

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+dig +nocmd +nocomments +noquestion +nostats "tasks.worker" | awk '{print $5}'
