@@ -1,14 +1,26 @@
 version: "3.8"
 services:
-        master:
-                image: mpi
-                build: .
-                volumes:
-                        - ./project:/root/project
-        worker:
-                image: mpi
-                build: .
-                volumes:
-                        - ./project:/root/project
- 
-
+    master:
+        image: 127.0.0.1:5000/mpi
+        build: .
+        ports:
+            - target: 22
+              published: 2222
+              protocol: tcp
+              mode: host
+        deploy:
+            placement:
+                constraints:
+                    # We want to start master on "current" host. Assume that this is menager.
+                    # Nother option is to use labels (see 'docker node update --label-add')
+                    - "node.role==manager"
+        volumes:
+            - ./project:/root/project
+    worker:
+        image: 127.0.0.1:5000/mpi
+        depends_on:
+            - master
+        deploy:
+            replicas: 3
+            placement:
+                max_replicas_per_node: 1

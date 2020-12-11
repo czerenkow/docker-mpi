@@ -8,14 +8,16 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libmpich-dev
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tinysshd ucspi-tcp  
 # ssh client
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-client
+# ping, dig, nslookup, etc.
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y iputils-ping dnsutils
 
 # Configure tinysshd
 RUN tinysshd-makekey /etc/tinyssh/sshkeydir
 RUN mkdir /root/.ssh/
 COPY ssh/*  /root/.ssh/
-RUN chmod 700 /root/.ssh/authorized_keys
+RUN chmod 700 /root/.ssh/
+RUN chmod 600 /root/.ssh/authorized_keys
 RUN chmod 600 /root/.ssh/id_ecdsa
-COPY machinefile /root/
 
 ENTRYPOINT ["tcpserver", "-HRDl0", "0.0.0.0", "22", "/usr/sbin/tinysshd", "-v", "/etc/tinyssh/sshkeydir"]
 
