@@ -1,3 +1,4 @@
 #!/bin/bash
 
+dig +nocmd +nocomments +noquestion +nostats "master" | awk '{print $5}'
 dig +nocmd +nocomments +noquestion +nostats "tasks.worker" | awk '{print $5}'

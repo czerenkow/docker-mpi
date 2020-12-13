@@ -3,16 +3,19 @@ services:
     master:
         image: 127.0.0.1:5000/mpi
         build: .
-        ports:
-            - target: 22
-              published: 2222
-              protocol: tcp
-              mode: host
+        # We can simply attach to the container by attach-stack command, but
+        # it is possible also to expose SSH port and connect by ssh.
+        # Uncomment this section if you want to ssh to master node (command ssh-stack).
+        #ports:
+        #    - target: 22
+        #      published: 2222
+        #      protocol: tcp
+        #      mode: host
         deploy:
             placement:
                 constraints:
-                    # We want to start master on "current" host. Assume that this is menager.
-                    # Nother option is to use labels (see 'docker node update --label-add')
+                    # We want to start master on the "current" host. Assume that this is a manager.
+                    # Another option is to use labels (see 'docker node update --label-add')
                     - "node.role==manager"
         volumes:
             - ./project:/root/project
@@ -21,6 +24,6 @@ services:
         depends_on:
             - master
         deploy:
-            replicas: 3
+            replicas: 2
             placement:
                 max_replicas_per_node: 1
