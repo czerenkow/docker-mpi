@@ -1,0 +1,4 @@
+#!/bin/bash
+
+node-master > /root/machinefile
+node-workers >> /root/machinefile

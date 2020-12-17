@@ -1,0 +1,3 @@
+#!/bin/bash
+
+dig +nocmd +nocomments +noquestion +nostats "master" | awk '{print $5}'
