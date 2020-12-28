@@ -45,9 +45,24 @@ Attach to the master container with `attach-stack` command and fill the file `/r
 ```
 mpiexec -f machinefile -n 3 hostname
 ```
+The output might look like this
+```
+root@32c03a788550:~# mpiexec -f machinefile -n 3 hostname
+32c03a788550
+399a9293ebdb
+7688c165e99f
+```
+
 Now lets try something closer to the reality. Go to `/root/project/` and build sample program with `make`, and synchronized project directory with all nodes (`sync` command). Exacute the program with:
 ```
 mpiexec -f machinefile -n 3 project/test-mpi
+```
+The output might look like this
+```
+root@32c03a788550:~# mpiexec -f machinefile -n 3 project/test-mpi
+Processor 399a9293ebdb, rank 2 out of 3 processors. CPUs: 2   CPUs available: 2
+Processor 32c03a788550, rank 0 out of 3 processors. CPUs: 8   CPUs available: 8
+Processor 7688c165e99f, rank 1 out of 3 processors. CPUs: 4   CPUs available: 4
 ```
 
 
