@@ -1,10 +1,10 @@
 # docker-mpi
 
-MPI claster on Docker Swarm.
+MPI cluster on Docker Swarm.
 
 Another (more complete solution) is available here [https://github.com/NLKNguyen/alpine-mpich](https://github.com/NLKNguyen/alpine-mpich)
 
-Do you have two or more physical machines and want to try your personal MPI cluster for your calculations? This toy project might be useful for you! Setup your Docker Swarm claster, deploy mpistack image, attach to the master container and simply run your MPI program on multiple hosts.
+Do you have two or more physical machines and want to try your personal MPI cluster for your calculations? This toy project might be useful for you! Setup your Docker Swarm cluster, deploy mpistack image, attach to the master container and simply run your MPI program on multiple hosts.
 
 
 # Prerequisites
@@ -19,7 +19,7 @@ docker service create --name registry --publish published=5000,target=5000 regis
 ```
 Now we are ready to push your image there. 
 
-# Launching MPI claster 
+# Launching MPI cluster 
 
 Build and push stackmpi image to the registry:
 ```
