@@ -24,6 +24,6 @@ services:
         depends_on:
             - master
         deploy:
-            replicas: 2
+            replicas: 2   # Change this number if you want more worker nodes
             placement:
                 max_replicas_per_node: 1
