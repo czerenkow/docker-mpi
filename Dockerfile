@@ -22,5 +22,6 @@ RUN chmod 600 /root/.ssh/id_ecdsa
 
 COPY bin-master/* /usr/local/bin/
 
-ENTRYPOINT ["tcpserver", "-HRDl0", "0.0.0.0", "22", "/usr/sbin/tinysshd", "-v", "/etc/tinyssh/sshkeydir"]
+WORKDIR /root
+CMD ["tcpserver", "-HRDl0", "0.0.0.0", "22", "/usr/sbin/tinysshd", "-v", "/etc/tinyssh/sshkeydir"]
 
